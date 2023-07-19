@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800&display=swap">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-image: url('/static/_d7551ade-c3e9-42db-9441-05802a5074d0.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* .bordered-image {
+      border: 20px solid;
+      border-image: url('/static/_d7551ade-c3e9-42db-9441-05802a5074d0.jpg') 30 30 stretch;
+      border-image-repeat: no-repeat ;
+      border-image-slice: fill;
+    } */
+
+    .login-box {
+      width: 350px;
+      padding: 40px;
+      background-color: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+      border-radius: 10px;
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .login-box.success {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    .login-box h2 {
+      margin-bottom: 30px;
+      color: #19253b;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .login-box .user-box {
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .login-box .user-box input {
+      width: 100%;
+      padding: 10px 0;
+      font-size: 16px;
+      color: #19253b;
+      border: none;
+      border-bottom: 1px solid #19253b;
+      outline: none;
+      background: transparent;
+    }
+
+    .login-box .user-box label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 10px 0;
+      font-size: 16px;
+      font-weight: bolder;
+      color: #19253b;
+      pointer-events: none;
+      transition: .5s;
+    }
+
+    .login-box .user-box input:focus~label,
+    .login-box .user-box input:valid~label {
+      top: -20px;
+      left: 0;
+      color: #19253b;
+      font-size: 12px;
+    }
+
+    .login-box form input[type="submit"] {
+      position: relative;
+      display: inline-block;
+      padding: 10px 20px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #19253b;
+      font-size: 16px;
+      text-decoration: none;
+      text-transform: uppercase;
+      overflow: hidden;
+      transition: .5s;
+      margin-top: 40px;
+      letter-spacing: 3px;
+      width: 100%;
+      text-align: center;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .login-box form input[type="submit"]:hover {
+      background-color: #354e78;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 120px;
+      height: auto;
+    }
+
+    .logo h1 {
+      color: #19253b;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-top: 10px;
+    }
+
+    .logo span {
+      color: #354e78;
+    }
+
+    .show-password {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .show-password input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 16px;
+      height: 16px;
+      background-color: #fff;
+      border: 1px solid #19253b;
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .show-password input[type="checkbox"]::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 8px;
+      height: 8px;
+      background-color: transparent;
+      border-bottom: 2px solid #19253b;
+      border-right: 2px solid #19253b;
+      transform: rotate(45deg);
+      transition: transform 0.2s ease-in-out;
+      opacity: 0;
+    }
+
+    .show-password input[type="checkbox"]:checked::before {
+      opacity: 1;
+    }
+
+    .show-password label {
+      color: #19253b;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bordered-image">
+    <div class="login-box" id="loginBox">
+      <div class="logo">
+        <img src="/static/Screenshot 2023-07-14 123735.png" alt="Qrater Logo">
+      </div>
+      <h2>Login Page</h2>
+      <form name="loginForm" method="post" action="/login" onsubmit="return handleLogin(event)">
+        <div class="user-box">
+          <input type="text" id="username" name="username" required>
+          <label for="username">Username:</label>
+        </div>
+        <div class="user-box">
+          <input type="password" id="password" name="password" required>
+          <label for="password">Password:</label>
+        </div>
+        <div class="show-password">
+          <input type="checkbox" id="showPassword" onclick="togglePasswordVisibility()">
+          <label for="showPassword">Show Password</label>
+        </div>
+        <input type="submit" value="Login">
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById("password");
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+      } else {
+        passwordInput.type = "password";
+      }
+    }
+  </script>
+</body>
+
+</html>
